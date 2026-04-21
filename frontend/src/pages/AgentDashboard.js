@@ -19,7 +19,7 @@ function StatCard({ icon:Icon, label, value, color='var(--accent)' }) {
 
 function AppointmentsView({ agentId }) {
   const [apts, setApts] = useState([]);
-  const [filter, setFilter] = useState('upcoming');
+  const [filter, setFilter] = useState('pending');
   const [dealModal, setDealModal] = useState(null);
   const [dealForm, setDealForm] = useState({ deal_type:'SALE', sold_price:'', rent_amount:'', security_deposit:'', rent_end_date:'' });
   const [msg, setMsg] = useState('');
@@ -68,7 +68,7 @@ function AppointmentsView({ agentId }) {
     <div>
       {msg && <div className="alert alert-success">{msg}</div>}
       <div style={{marginBottom:16, display:'flex', gap:4}}>
-        {['upcoming','pending','done','all'].map(f=>(
+        {['pending','done','all'].map(f=>(
           <button key={f} className={`tab${filter===f?' active':''}`} onClick={()=>setFilter(f)}>
             {f.charAt(0).toUpperCase()+f.slice(1)}
           </button>
@@ -88,15 +88,51 @@ function AppointmentsView({ agentId }) {
           {header:'Status',      accessor:'deal_status', render:r=>(
             <span className={`badge ${r.deal_status?'badge-success':'badge-warning'}`}>{r.deal_status?'Closed':'Open'}</span>
           )},
-          {header:'Actions', sortable:false, render:r=> !r.deal_status && (
-            <button className="btn btn-success btn-sm" onClick={()=>{
-              setDealModal(r);
-              setDealForm({deal_type:r.listing_type==='RENT'?'RENT':'SALE', sold_price:'',rent_amount:'',security_deposit:'',rent_end_date:''});
-              setErr('');
-            }}>
-              <CheckCircle size={12}/> Close Deal
-            </button>
-          )},
+          {
+            header:'Actions',
+            sortable:false,
+            render:r => !r.deal_status && (
+              <div style={{display:'flex', gap:6}}>
+                
+                {/* Close Deal */}
+                <button
+                  className="btn btn-success btn-sm"
+                  onClick={()=>{
+                    setDealModal(r);
+                    setDealForm({
+                      deal_type:r.listing_type==='RENT'?'RENT':'SALE',
+                      sold_price:'',
+                      rent_amount:'',
+                      security_deposit:'',
+                      rent_end_date:''
+                    });
+                    setErr('');
+                  }}
+                >
+                  <CheckCircle size={12}/> Close
+                </button>
+
+                {/* Fail Deal */}
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={async ()=>{
+                    if(!window.confirm("Mark this deal as failed?")) return;
+
+                    try {
+                      await api.post(`/agent/fail-deal/${r.appointment_id}`);
+                      setMsg("Deal marked as failed.");
+                      load();
+                    } catch(e) {
+                      setErr(e.response?.data?.detail || "Error");
+                    }
+                  }}
+                >
+                  <XCircle size={12}/> Fail
+                </button>
+
+              </div>
+            )
+          }
         ]}
         data={apts}
       />
@@ -188,20 +224,6 @@ function PerformanceView({ agentId }) {
         <StatCard icon={CheckCircle}   label="Deals Closed"       value={perf.summary.successful_deals||0} color="#4ade80"/>
         <StatCard icon={Target}        label="Conversion Rate"     value={`${perf.summary.conversion_rate||0}%`} color="#60a5fa"/>
         <StatCard icon={DollarSign}    label="Total Revenue"       value={fmtCurrency(perf.summary.total_revenue)} color="#fbbf24"/>
-      </div>
-      <div className="card">
-        <div className="card-title">Monthly Performance</div>
-        <div style={{height:260}}>
-          <ResponsiveContainer>
-            <LineChart data={perf.monthly}>
-              <XAxis dataKey="month" tick={{fill:'var(--text-muted)',fontSize:11}} tickLine={false}/>
-              <YAxis tick={{fill:'var(--text-muted)',fontSize:10}} tickFormatter={v=>fmtCurrency(v)} tickLine={false} axisLine={false}/>
-              <Tooltip formatter={v=>[fmtCurrency(v),'Revenue']} contentStyle={{background:'var(--bg-card)',border:'1px solid var(--border)',borderRadius:8}}/>
-              <Line type="monotone" dataKey="revenue" stroke="var(--accent)" strokeWidth={2} dot={{fill:'var(--accent)'}}/>
-              <Line type="monotone" dataKey="deals" stroke="#60a5fa" strokeWidth={2} dot={{fill:'#60a5fa'}}/>
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
       </div>
     </div>
   );

@@ -1,0 +1,45 @@
+# ======================
+# Backend (Python)
+# ======================
+backend/venv/
+backend/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+backend/logs/
+logs/
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# ======================
+# Frontend (React / Node)
+# ======================
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# Optional: lock file (keep if you want reproducible installs)
+# frontend/package-lock.json
+
+# ======================
+# OS / Misc
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# IDE
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# Temp / Cache
+# ======================
+*.swp
+*.tmp
