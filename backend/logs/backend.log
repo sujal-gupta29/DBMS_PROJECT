@@ -1,28 +1,12 @@
 INFO:     Will watch for changes in these directories: ['/home/priyanshu-pareek/repos/DBMS_PROJECT/backend']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [46386] using WatchFiles
-INFO:     Started server process [46388]
+INFO:     Started reloader process [66583] using WatchFiles
+INFO:     Started server process [66585]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-2026-04-21 10:40:09 [INFO] access: POST /auth/login status=200 424.0ms
-INFO:     127.0.0.1:35614 - "POST /auth/login HTTP/1.1" 200 OK
-2026-04-21 10:40:09 [INFO] access: GET /agent/profile/A-001 status=200 9.3ms
-INFO:     127.0.0.1:35614 - "GET /agent/profile/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:09 [INFO] access: GET /agent/performance/A-001 status=200 15.2ms
-INFO:     127.0.0.1:35630 - "GET /agent/performance/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:09 [INFO] access: GET /agent/profile/A-001 status=200 15.5ms
-INFO:     127.0.0.1:35632 - "GET /agent/profile/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:09 [INFO] access: GET /agent/performance/A-001 status=200 12.4ms
-INFO:     127.0.0.1:35614 - "GET /agent/performance/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:12 [INFO] access: GET /agent/listings status=200 7.3ms
-INFO:     127.0.0.1:35614 - "GET /agent/listings HTTP/1.1" 200 OK
-2026-04-21 10:40:12 [INFO] access: GET /agent/listings status=200 7.5ms
-INFO:     127.0.0.1:35632 - "GET /agent/listings HTTP/1.1" 200 OK
-2026-04-21 10:40:20 [INFO] access: OPTIONS /agent/performance/A-001 status=200 0.7ms
-INFO:     127.0.0.1:53658 - "OPTIONS /agent/performance/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:20 [INFO] access: OPTIONS /agent/performance/A-001 status=200 1.1ms
-INFO:     127.0.0.1:53670 - "OPTIONS /agent/performance/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:20 [INFO] access: GET /agent/performance/A-001 status=200 10.3ms
-INFO:     127.0.0.1:53670 - "GET /agent/performance/A-001 HTTP/1.1" 200 OK
-2026-04-21 10:40:20 [INFO] access: GET /agent/performance/A-001 status=200 7.4ms
-INFO:     127.0.0.1:53658 - "GET /agent/performance/A-001 HTTP/1.1" 200 OK
+2026-04-21 10:56:15 [INFO] access: GET /main.cace1efa74b81b8a30ee.hot-update.json status=404 0.9ms
+INFO:     None:0 - "GET /main.cace1efa74b81b8a30ee.hot-update.json HTTP/1.1" 404 Not Found
+2026-04-21 10:56:16 [INFO] access: GET /agent/performance/A-001 status=200 9.5ms
+INFO:     127.0.0.1:34034 - "GET /agent/performance/A-001 HTTP/1.1" 200 OK
+2026-04-21 10:56:16 [INFO] access: GET /agent/performance/A-001 status=200 4.8ms
+INFO:     127.0.0.1:34044 - "GET /agent/performance/A-001 HTTP/1.1" 200 OK

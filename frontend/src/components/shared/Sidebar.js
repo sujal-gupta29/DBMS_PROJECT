@@ -39,7 +39,6 @@ const navConfig = {
   ],
   agent: [
     { label: 'Overview', items: [
-      { icon: LayoutDashboard, label: 'Dashboard',   key: 'dashboard' },
       { icon: Star,            label: 'Performance', key: 'performance' },
     ]},
     { label: 'Work', items: [

@@ -17,60 +17,6 @@ function StatCard({ icon:Icon, label, value, color='var(--accent)' }) {
   );
 }
 
-function DashboardView({ agentId }) {
-  const [perf, setPerf] = useState(null);
-  const [profile, setProfile] = useState(null);
-
-  useEffect(()=>{
-    if(!agentId) return;
-    api.get(`/agent/profile/${agentId}`).then(r=>setProfile(r.data));
-    api.get(`/agent/performance/${agentId}`).then(r=>setPerf(r.data));
-  },[agentId]);
-
-  if(!perf || !profile) return <div className="loading"><div className="spinner"/>Loading…</div>;
-  const s = perf.summary;
-
-  return (
-    <div>
-      <div className="stats-grid">
-        <StatCard icon={CalendarCheck} label="Total Appointments" value={s.total_appointments||0}/>
-        <StatCard icon={CheckCircle}   label="Successful Deals"   value={s.successful_deals||0} color="#4ade80"/>
-        <StatCard icon={Target}        label="Conversion Rate"     value={`${s.conversion_rate||0}%`} color="#60a5fa"/>
-        <StatCard icon={DollarSign}    label="Total Revenue"       value={fmtCurrency(s.total_revenue)} color="#fbbf24"/>
-      </div>
-
-      <div className="card" style={{marginBottom:20}}>
-        <div className="card-title"><TrendingUp size={16}/>Monthly Revenue</div>
-        <div style={{height:240}}>
-          <ResponsiveContainer>
-            <LineChart data={perf.monthly}>
-              <XAxis dataKey="month" tick={{fill:'var(--text-muted)',fontSize:11}} tickLine={false}/>
-              <YAxis tick={{fill:'var(--text-muted)',fontSize:10}} tickFormatter={v=>fmtCurrency(v)} tickLine={false} axisLine={false}/>
-              <Tooltip formatter={v=>[fmtCurrency(v),'Revenue']} contentStyle={{background:'var(--bg-card)',border:'1px solid var(--border)',borderRadius:8}}/>
-              <Line type="monotone" dataKey="revenue" stroke="var(--accent)" strokeWidth={2} dot={{fill:'var(--accent)'}}/>
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="card">
-        <div className="card-title">Agent Profile</div>
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, fontSize:'0.88rem'}}>
-          {[['Name', profile.name],['Email', profile.email],['Phone', profile.phone],
-            ['Manager', profile.manager_name],['Hire Date', fmtDate(profile.hire_date)],
-            ['Base Salary', fmtCurrency(profile.base_salary)],
-          ].map(([k,v])=>(
-            <div key={k} style={{padding:'10px 14px', background:'var(--bg-secondary)', borderRadius:8}}>
-              <div style={{fontSize:'0.72rem',color:'var(--text-muted)',marginBottom:2}}>{k}</div>
-              <div style={{color:'var(--text-primary)',fontWeight:500}}>{v}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function AppointmentsView({ agentId }) {
   const [apts, setApts] = useState([]);
   const [filter, setFilter] = useState('upcoming');
@@ -252,7 +198,7 @@ function PerformanceView({ agentId }) {
               <YAxis tick={{fill:'var(--text-muted)',fontSize:10}} tickFormatter={v=>fmtCurrency(v)} tickLine={false} axisLine={false}/>
               <Tooltip formatter={v=>[fmtCurrency(v),'Revenue']} contentStyle={{background:'var(--bg-card)',border:'1px solid var(--border)',borderRadius:8}}/>
               <Line type="monotone" dataKey="revenue" stroke="var(--accent)" strokeWidth={2} dot={{fill:'var(--accent)'}}/>
-              <Line type="monotone" dataKey="deals" stroke="#60a5fa" strokeWidth={2} dot={{fill:'#60a5fa'}} yAxisId="right"/>
+              <Line type="monotone" dataKey="deals" stroke="#60a5fa" strokeWidth={2} dot={{fill:'#60a5fa'}}/>
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -262,7 +208,6 @@ function PerformanceView({ agentId }) {
 }
 
 const views = {
-  dashboard:    { title:'Dashboard',    sub:'Your performance overview', Component: DashboardView },
   performance:  { title:'Performance',  sub:'Detailed stats',           Component: PerformanceView },
   appointments: { title:'Appointments', sub:'Your assigned appointments',Component: AppointmentsView },
   listings:     { title:'Listings',     sub:'All active listings',       Component: ListingsView },
@@ -270,7 +215,7 @@ const views = {
 
 export default function AgentDashboard() {
   const { user } = useAuth();
-  const [active, setActive] = useState('dashboard');
+  const [active, setActive] = useState('performance');
   const view = views[active] || views.dashboard;
   const { Component } = view;
 
