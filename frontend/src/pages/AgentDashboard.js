@@ -208,7 +208,7 @@ function AppointmentsView({ agentId }) {
 
 function ListingsView() {
   const [listings, setListings] = useState([]);
-  useEffect(()=>{ api.get('/manager/listings').then(r=>setListings(r.data)); },[]);
+  useEffect(()=>{ api.get('/agent/listings').then(r=>setListings(r.data)); },[]);
   return (
     <DataTable
       title="All Active Listings"

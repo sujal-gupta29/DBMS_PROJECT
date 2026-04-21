@@ -29,6 +29,27 @@ def agent_profile(agent_id: str, conn=Depends(get_db), user=Depends(agent_access
             raise HTTPException(status_code=404, detail="Agent not found.")
         return agent
 
+@router.get("/listings")
+def agent_listings(conn=Depends(get_db), user=Depends(agent_access)):
+    with conn.cursor() as cur:
+        cur.execute("""
+            SELECT l.listing_id, l.listing_type, l.price_rent, l.price_sell, l.status,
+                   p.property_type,
+                   a.city,
+                   loc.locality_name,
+                   c.name AS owner_name,
+                   f.bedrooms
+            FROM LISTING l
+            JOIN PROPERTY p   ON l.property_id  = p.property_id
+            JOIN ADDRESS a    ON p.property_id  = a.property_id
+            JOIN LOCALITY loc ON a.locality_id  = loc.locality_id
+            JOIN CLIENT c     ON p.owner_id     = c.client_id
+            JOIN FEATURES f   ON p.property_id  = f.property_id
+            WHERE l.status = 'ACTIVE'
+            ORDER BY l.list_date DESC
+        """)
+        return cur.fetchall()
+
 
 @router.get("/appointments/{agent_id}")
 def agent_appointments(agent_id: str, status: str = "all",
