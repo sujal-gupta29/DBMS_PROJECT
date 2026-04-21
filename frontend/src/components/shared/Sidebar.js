@@ -44,6 +44,7 @@ const navConfig = {
     { label: 'Work', items: [
       { icon: CalendarCheck, label: 'Appointments', key: 'appointments' },
       { icon: Building2,     label: 'Listings',     key: 'listings' },
+      { icon: ListChecks, label: 'Transactions', key: 'transactions' },
     ]},
   ],
   client: [

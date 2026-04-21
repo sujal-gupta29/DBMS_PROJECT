@@ -50,6 +50,47 @@ def agent_listings(conn=Depends(get_db), user=Depends(agent_access)):
         """)
         return cur.fetchall()
 
+@router.get("/transactions/{agent_id}")
+def agent_transactions(agent_id: str, conn=Depends(get_db), user=Depends(agent_access)):
+    with conn.cursor() as cur:
+        cur.execute("""
+            SELECT 
+                t.transaction_id,
+                t.sell_date,
+                t.sold_price,
+                t.rent_id,
+                ap.appointment_id,
+                ap.deal_status,
+                bc.name AS buyer_name,
+                sc.name AS seller_name,
+                l.listing_type,
+                l.listing_id,
+                a.city,
+                loc.locality_name
+            FROM TRANSACTION t
+            JOIN APPOINTMENT ap ON t.appointment_id = ap.appointment_id
+            JOIN LISTING l      ON t.listing_id     = l.listing_id
+            JOIN PROPERTY p     ON l.property_id    = p.property_id
+            JOIN ADDRESS a      ON p.property_id    = a.property_id
+            JOIN LOCALITY loc   ON a.locality_id    = loc.locality_id
+            JOIN CLIENT bc      ON t.buyer_client_id  = bc.client_id
+            JOIN CLIENT sc      ON t.seller_client_id = sc.client_id
+            WHERE ap.agent_id = %s
+            ORDER BY t.sell_date DESC
+        """, (agent_id,))
+        return cur.fetchall()
+
+@router.get("/rent/{rent_id}")
+def get_rent_agreement(rent_id: str, conn=Depends(get_db), user=Depends(agent_access)):
+    with conn.cursor() as cur:
+        cur.execute("""
+            SELECT * FROM RENT_AGREEMENT
+            WHERE rent_id = %s
+        """, (rent_id,))
+        rent = cur.fetchone()
+        if not rent:
+            raise HTTPException(404, "Rent agreement not found.")
+        return rent
 
 @router.get("/appointments/{agent_id}")
 def agent_appointments(agent_id: str, status: str = "all",

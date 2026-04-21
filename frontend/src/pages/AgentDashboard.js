@@ -207,10 +207,86 @@ function PerformanceView({ agentId }) {
   );
 }
 
+function TransactionsView({ agentId }) {
+  const [txns, setTxns] = useState([]);
+  const [rentDetails, setRentDetails] = useState(null);
+
+  useEffect(()=>{
+    if(agentId) {
+      api.get(`/agent/transactions/${agentId}`)
+         .then(r=>setTxns(r.data));
+    }
+  },[agentId]);
+
+  const viewRent = async (rent_id) => {
+    try {
+      const res = await api.get(`/agent/rent/${rent_id}`);
+      setRentDetails(res.data);
+    } catch(e) {
+      alert("Failed to load rent agreement");
+    }
+  };
+
+  return (
+    <div>
+      <DataTable
+        title="My Transactions"
+        columns={[
+          {header:'ID', accessor:'transaction_id'},
+          {header:'Type', accessor:'listing_type'},
+          {header:'Buyer', accessor:'buyer_name'},
+          {header:'Seller', accessor:'seller_name'},
+          {header:'Location', render:r=>`${r.locality_name}, ${r.city}`},
+          {header:'Amount', render:r=>
+            r.listing_type==='RENT'
+              ? `₹${r.sold_price || 0}`
+              : `₹${r.sold_price || 0}`
+          },
+          {header:'Date', accessor:'sell_date'},
+          {
+            header:'Action',
+            render:r => r.listing_type === 'RENT' && r.rent_id && (
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={()=>viewRent(r.rent_id)}
+              >
+                View Agreement
+              </button>
+            )
+          }
+        ]}
+        data={txns}
+      />
+
+      {/* Modal */}
+      {rentDetails && (
+        <div className="modal-overlay" onClick={()=>setRentDetails(null)}>
+          <div className="modal" onClick={e=>e.stopPropagation()}>
+            <div className="modal-title">Rent Agreement</div>
+
+            <p><b>Rent ID:</b> {rentDetails.rent_id}</p>
+            <p><b>End Date:</b> {rentDetails.end_date}</p>
+            <p><b>Monthly Rent:</b> ₹{rentDetails.rent_amount}</p>
+            <p><b>Security Deposit:</b> ₹{rentDetails.security_deposit}</p>
+
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={()=>setRentDetails(null)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const views = {
   performance:  { title:'Performance',  sub:'Detailed stats',           Component: PerformanceView },
   appointments: { title:'Appointments', sub:'Your assigned appointments',Component: AppointmentsView },
   listings:     { title:'Listings',     sub:'All active listings',       Component: ListingsView },
+  transactions: { 
+  title:'Transactions', sub:'Deals you handled', Component: TransactionsView },
 };
 
 export default function AgentDashboard() {
