@@ -1,0 +1,236 @@
+Setup started: 20-04-2026 21:43:38.56 
+[1/7] Checking prerequisites 
+  Found: Python 3.12.9 
+  Found: Node v24.13.0 
+  Found: MySQL OK 
+[2/7] MySQL Configuration 
+MySQL connection OK 
+[3/7] Writing .env 
+.env written OK 
+[4/7] Loading SQL 
+mysql: [Warning] Using a password on the command line interface can be insecure.
+status
+Database setup complete! All tables, procedures, and seed data loaded.
+note
+Default password for ALL users: password123
+status
+Views created successfully.
+SQL loaded OK 
+[5/7] Python venv 
+Requirement already satisfied: pip in c:\users\sujal\downloads\real_estate_app\backend\venv\lib\site-packages (24.3.1)
+Collecting pip
+  Using cached pip-26.0.1-py3-none-any.whl.metadata (4.7 kB)
+Using cached pip-26.0.1-py3-none-any.whl (1.8 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 24.3.1
+    Uninstalling pip-24.3.1:
+      Successfully uninstalled pip-24.3.1
+Successfully installed pip-26.0.1
+Collecting fastapi==0.111.0 (from -r requirements.txt (line 1))
+  Using cached fastapi-0.111.0-py3-none-any.whl.metadata (25 kB)
+Collecting uvicorn==0.30.1 (from uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached uvicorn-0.30.1-py3-none-any.whl.metadata (6.3 kB)
+Collecting pymysql==1.1.1 (from -r requirements.txt (line 3))
+  Using cached PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
+Collecting python-jose==3.3.0 (from python-jose[cryptography]==3.3.0->-r requirements.txt (line 4))
+  Using cached python_jose-3.3.0-py2.py3-none-any.whl.metadata (5.4 kB)
+Collecting passlib==1.7.4 (from passlib[bcrypt]==1.7.4->-r requirements.txt (line 5))
+  Using cached passlib-1.7.4-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting python-multipart==0.0.9 (from -r requirements.txt (line 6))
+  Using cached python_multipart-0.0.9-py3-none-any.whl.metadata (2.5 kB)
+Collecting pydantic==2.7.1 (from -r requirements.txt (line 7))
+  Using cached pydantic-2.7.1-py3-none-any.whl.metadata (107 kB)
+Collecting pydantic-settings==2.3.0 (from -r requirements.txt (line 8))
+  Using cached pydantic_settings-2.3.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting python-dotenv==1.0.1 (from -r requirements.txt (line 9))
+  Using cached python_dotenv-1.0.1-py3-none-any.whl.metadata (23 kB)
+Collecting cryptography==42.0.8 (from -r requirements.txt (line 10))
+  Using cached cryptography-42.0.8-cp39-abi3-win_amd64.whl.metadata (5.4 kB)
+Collecting starlette<0.38.0,>=0.37.2 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached starlette-0.37.2-py3-none-any.whl.metadata (5.9 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting fastapi-cli>=0.0.2 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached fastapi_cli-0.0.24-py3-none-any.whl.metadata (6.4 kB)
+Collecting httpx>=0.23.0 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting jinja2>=2.11.2 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting ujson!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,>=4.0.1 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached ujson-5.12.0-cp312-cp312-win_amd64.whl.metadata (9.8 kB)
+Collecting orjson>=3.2.1 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached orjson-3.11.8-cp312-cp312-win_amd64.whl.metadata (43 kB)
+Collecting email_validator>=2.0.0 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached email_validator-2.3.0-py3-none-any.whl.metadata (26 kB)
+Collecting annotated-types>=0.4.0 (from pydantic==2.7.1->-r requirements.txt (line 7))
+  Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.18.2 (from pydantic==2.7.1->-r requirements.txt (line 7))
+  Using cached pydantic_core-2.18.2-cp312-none-win_amd64.whl.metadata (6.7 kB)
+Collecting click>=7.0 (from uvicorn==0.30.1->uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached click-8.3.2-py3-none-any.whl.metadata (2.6 kB)
+Collecting h11>=0.8 (from uvicorn==0.30.1->uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting ecdsa!=0.15 (from python-jose==3.3.0->python-jose[cryptography]==3.3.0->-r requirements.txt (line 4))
+  Using cached ecdsa-0.19.2-py2.py3-none-any.whl.metadata (29 kB)
+Collecting rsa (from python-jose==3.3.0->python-jose[cryptography]==3.3.0->-r requirements.txt (line 4))
+  Using cached rsa-4.9.1-py3-none-any.whl.metadata (5.6 kB)
+Collecting pyasn1 (from python-jose==3.3.0->python-jose[cryptography]==3.3.0->-r requirements.txt (line 4))
+  Using cached pyasn1-0.6.3-py3-none-any.whl.metadata (8.4 kB)
+Collecting cffi>=1.12 (from cryptography==42.0.8->-r requirements.txt (line 10))
+  Using cached cffi-2.0.0-cp312-cp312-win_amd64.whl.metadata (2.6 kB)
+Collecting bcrypt>=3.1.0 (from passlib[bcrypt]==1.7.4->-r requirements.txt (line 5))
+  Using cached bcrypt-5.0.0-cp39-abi3-win_amd64.whl.metadata (10 kB)
+Collecting colorama>=0.4 (from uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting httptools>=0.5.0 (from uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached httptools-0.7.1-cp312-cp312-win_amd64.whl.metadata (3.6 kB)
+Collecting pyyaml>=5.1 (from uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached pyyaml-6.0.3-cp312-cp312-win_amd64.whl.metadata (2.4 kB)
+Collecting watchfiles>=0.13 (from uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached watchfiles-1.1.1-cp312-cp312-win_amd64.whl.metadata (5.0 kB)
+Collecting websockets>=10.4 (from uvicorn[standard]==0.30.1->-r requirements.txt (line 2))
+  Using cached websockets-16.0-cp312-cp312-win_amd64.whl.metadata (7.0 kB)
+Collecting anyio<5,>=3.4.0 (from starlette<0.38.0,>=0.37.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached anyio-4.13.0-py3-none-any.whl.metadata (4.5 kB)
+Collecting idna>=2.8 (from anyio<5,>=3.4.0->starlette<0.38.0,>=0.37.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+Collecting pycparser (from cffi>=1.12->cryptography==42.0.8->-r requirements.txt (line 10))
+  Using cached pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+Collecting six>=1.9.0 (from ecdsa!=0.15->python-jose==3.3.0->python-jose[cryptography]==3.3.0->-r requirements.txt (line 4))
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting dnspython>=2.0.0 (from email_validator>=2.0.0->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+Collecting typer>=0.16.0 (from fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached typer-0.24.1-py3-none-any.whl.metadata (16 kB)
+Collecting rich-toolkit>=0.14.8 (from fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached rich_toolkit-0.19.7-py3-none-any.whl.metadata (1.0 kB)
+Collecting certifi (from httpx>=0.23.0->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached certifi-2026.2.25-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx>=0.23.0->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting MarkupSafe>=2.0 (from jinja2>=2.11.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached markupsafe-3.0.3-cp312-cp312-win_amd64.whl.metadata (2.8 kB)
+Collecting rich>=13.7.1 (from rich-toolkit>=0.14.8->fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.7.1->rich-toolkit>=0.14.8->fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.7.1->rich-toolkit>=0.14.8->fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.7.1->rich-toolkit>=0.14.8->fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Collecting shellingham>=1.3.0 (from typer>=0.16.0->fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting annotated-doc>=0.0.2 (from typer>=0.16.0->fastapi-cli>=0.0.2->fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+Using cached fastapi-0.111.0-py3-none-any.whl (91 kB)
+Using cached pydantic-2.7.1-py3-none-any.whl (409 kB)
+Using cached uvicorn-0.30.1-py3-none-any.whl (62 kB)
+Using cached PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+Using cached python_jose-3.3.0-py2.py3-none-any.whl (33 kB)
+Using cached passlib-1.7.4-py2.py3-none-any.whl (525 kB)
+Using cached python_multipart-0.0.9-py3-none-any.whl (22 kB)
+Using cached pydantic_settings-2.3.0-py3-none-any.whl (21 kB)
+Using cached python_dotenv-1.0.1-py3-none-any.whl (19 kB)
+Using cached cryptography-42.0.8-cp39-abi3-win_amd64.whl (2.9 MB)
+Using cached pydantic_core-2.18.2-cp312-none-win_amd64.whl (1.9 MB)
+Using cached starlette-0.37.2-py3-none-any.whl (71 kB)
+Using cached anyio-4.13.0-py3-none-any.whl (114 kB)
+Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Using cached bcrypt-5.0.0-cp39-abi3-win_amd64.whl (150 kB)
+Using cached cffi-2.0.0-cp312-cp312-win_amd64.whl (183 kB)
+Using cached click-8.3.2-py3-none-any.whl (108 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Using cached ecdsa-0.19.2-py2.py3-none-any.whl (150 kB)
+Using cached email_validator-2.3.0-py3-none-any.whl (35 kB)
+Using cached dnspython-2.8.0-py3-none-any.whl (331 kB)
+Using cached fastapi_cli-0.0.24-py3-none-any.whl (12 kB)
+Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Using cached httptools-0.7.1-cp312-cp312-win_amd64.whl (86 kB)
+Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Using cached idna-3.11-py3-none-any.whl (71 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.3-cp312-cp312-win_amd64.whl (15 kB)
+Using cached orjson-3.11.8-cp312-cp312-win_amd64.whl (127 kB)
+Using cached pyyaml-6.0.3-cp312-cp312-win_amd64.whl (154 kB)
+Using cached rich_toolkit-0.19.7-py3-none-any.whl (32 kB)
+Using cached rich-15.0.0-py3-none-any.whl (310 kB)
+Using cached pygments-2.20.0-py3-none-any.whl (1.2 MB)
+Using cached markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached typer-0.24.1-py3-none-any.whl (56 kB)
+Using cached annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached ujson-5.12.0-cp312-cp312-win_amd64.whl (44 kB)
+Using cached watchfiles-1.1.1-cp312-cp312-win_amd64.whl (288 kB)
+Using cached websockets-16.0-cp312-cp312-win_amd64.whl (178 kB)
+Using cached certifi-2026.2.25-py3-none-any.whl (153 kB)
+Using cached pyasn1-0.6.3-py3-none-any.whl (83 kB)
+Using cached pycparser-3.0-py3-none-any.whl (48 kB)
+Using cached rsa-4.9.1-py3-none-any.whl (34 kB)
+Installing collected packages: passlib, websockets, ujson, typing-extensions, six, shellingham, pyyaml, python-multipart, python-dotenv, pymysql, pygments, pycparser, pyasn1, orjson, mdurl, MarkupSafe, idna, httptools, h11, dnspython, colorama, certifi, bcrypt, annotated-types, annotated-doc, rsa, pydantic-core, markdown-it-py, jinja2, httpcore, email_validator, ecdsa, click, cffi, anyio, watchfiles, uvicorn, starlette, rich, python-jose, pydantic, httpx, cryptography, typer, rich-toolkit, pydantic-settings, fastapi-cli, fastapi
+
+Successfully installed MarkupSafe-3.0.3 annotated-doc-0.0.4 annotated-types-0.7.0 anyio-4.13.0 bcrypt-5.0.0 certifi-2026.2.25 cffi-2.0.0 click-8.3.2 colorama-0.4.6 cryptography-42.0.8 dnspython-2.8.0 ecdsa-0.19.2 email_validator-2.3.0 fastapi-0.111.0 fastapi-cli-0.0.24 h11-0.16.0 httpcore-1.0.9 httptools-0.7.1 httpx-0.28.1 idna-3.11 jinja2-3.1.6 markdown-it-py-4.0.0 mdurl-0.1.2 orjson-3.11.8 passlib-1.7.4 pyasn1-0.6.3 pycparser-3.0 pydantic-2.7.1 pydantic-core-2.18.2 pydantic-settings-2.3.0 pygments-2.20.0 pymysql-1.1.1 python-dotenv-1.0.1 python-jose-3.3.0 python-multipart-0.0.9 pyyaml-6.0.3 rich-15.0.0 rich-toolkit-0.19.7 rsa-4.9.1 shellingham-1.5.4 six-1.17.0 starlette-0.37.2 typer-0.24.1 typing-extensions-4.15.0 ujson-5.12.0 uvicorn-0.30.1 watchfiles-1.1.1 websockets-16.0
+Python deps installed OK 
+[6/7] Frontend npm install 
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+npm warn deprecated whatwg-encoding@1.0.5: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+npm warn deprecated
+npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 1339 packages, and audited 1340 packages in 3m
+
+268 packages are looking for funding
+  run `npm fund` for details
+
+26 vulnerabilities (9 low, 3 moderate, 14 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+added 10 packages, removed 6 packages, changed 2 packages, and audited 1344 packages in 11s
+
+268 packages are looking for funding
+  run `npm fund` for details
+
+26 vulnerabilities (9 low, 3 moderate, 14 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm install OK 
+Setup completed: 20-04-2026 21:48:49.98 
